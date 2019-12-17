@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/mainPage.css" />
+    <title>QuickMark</title>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <header>
+        QuickMark
+        <div id="headerButton">
+          <button type="button" id="folder">
+            <img src="html_icon/folder.svg" />
+          </button>
+          <button type="button" id="copy">
+            <img src="html_icon/file_copy.svg" />
+          </button>
+          <button type="button" id="delete">
+            <img src="html_icon/delete.svg" />
+          </button>
+          <button type="button" id="reload">
+            <img src="html_icon/reload.svg" />
+          </button>
+        </div>
+      </header>
+      <div id="content">
+        <div id="sidebar">
+          <ul id="sidebarList">
+            <li>a</li>
+          </ul>
+        </div>
+        <div id="main">
+          <input type="checkbox" id="allcheck" /> 全選択
+          <div id="linklist"></div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../js/QMStorage.js" defer></script>
+    <script type="text/javascript" src="../js/quickMark.js" defer></script>
+    <script type="text/javascript" src="../js/QMUtil.js" defer></script>
+    <script type="text/javascript" src="html_js/mainPage.js" defer></script>
+  </body>
+</html>

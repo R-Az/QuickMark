@@ -1,0 +1,58 @@
+{
+  "manifest_version": 2,
+  "name": "QuickMark",
+  "version": "0.1.0",
+  "description": "現在閲覧しているページを素早くQuickMark独自のブックマークへ登録します。ブックマークは閲覧・破棄が簡単です",
+  "background": {
+    "scripts": [
+      "js/QMStorage.js",
+      "js/quickMark.js",
+      "js/background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/content.js"
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icon/icon48px.png",
+    "default_tittle": "QuickMark"
+  },
+  "icons": {
+    "16": "icon/icon16px.png",
+    "48": "icon/icon48px.png",
+    "128": "icon/icon128px.png"
+  },
+  "permissions": [
+    "tabs",
+    "background",
+    "storage"
+  ],
+  "commands": {
+    "quickmark": {
+      "suggested_key": {
+        "default": "Ctrl+B"
+      },
+      "description": "現在のページをQuickMark独自のブックマークへ追加します。"
+    },
+    "browseraction": {
+      "suggested_key": {
+        "default": "Ctrl+Q"
+      },
+      "description": "QuickMarkのブックマークを開きます。"
+    },
+    "directorySetting": {
+      "suggested_key": {
+        "default": "Ctrl + Shift + Q"
+      },
+      "description": "QuickMarkのフォルダ管理画面を開きます。"
+    }
+  }
+}
