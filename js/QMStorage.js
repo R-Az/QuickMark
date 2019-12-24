@@ -88,7 +88,6 @@ class QMStorage {
   /**
    * storageからmainのObjectを取得し、保存用Keyを取り除いて返す。
    *
-   * @static
    * @memberof QMStorage
    */
   async loadMain() {
@@ -98,17 +97,6 @@ class QMStorage {
 
   /**
    * storageからconfigのObjectを取得し、保存用Keyを取り除いて返す。
-   * @static
-   * @memberof QMStorage
-   */
-  // async loadConfig() {
-  //   const config = await this.loadFromStorage(this.QUICK_MARK_CONFIG);
-  //   return config[this.QUICK_MARK_CONFIG];
-  // }
-
-  /**
-   * storageからconfigのObjectを取得し、保存用Keyを取り除いて返す。
-   * @static
    * @memberof QMStorage
    */
   loadConfig() {
@@ -138,7 +126,6 @@ class QMStorage {
   /**
    * storageのmainへmainObjを保存する。
    *
-   * @static
    * @param {Object} mainObj
    * @memberof QMStorage
    */
@@ -147,7 +134,7 @@ class QMStorage {
   }
 
   /**
-   * storageのconfigへconfigObjを保存する・
+   * storageのconfigへconfigObjを保存する
    *
    * @static
    * @param {Object} configObj
@@ -173,7 +160,7 @@ class QMStorage {
   /**
    * objectKeyで指定したObjectをstorageから読み込む。
    *
-   * @param {String} objectKey storageの取得先を指定する　getterを使った定数、CONFIGかMAINを入れる。
+   * @param {String} objectKey storageの取得先を指定する　getterを使った定数、CONFIGかMAINを入れる
    * @returns {Promise} storageから値を取得できなければ、エラーメッセージが表示される。
    * @memberof QMStorage
    */
@@ -213,7 +200,12 @@ class QMStorage {
       });
     });
   }
-
+  /**
+   * 初期化用のQuickMarkのデータを作成し、syncに保存する。
+   * 
+   * @static
+   * @memberof QMStorage
+   */
   static async makeQuickMarkData() {
     chrome.storage.sync.get([QMStorage.QUICK_MARK_MAIN], result => {
       if (!(QMStorage.QUICK_MARK_MAIN in result)) {
@@ -225,6 +217,7 @@ class QMStorage {
             STORAGE: "SYNC"
           }
         };
+
         chrome.storage.sync.set(initQuickMarkData, () => {
           if (chrome.runtime.lastError) {
             alert(chrome.runtime.lastError.message);

@@ -21,13 +21,12 @@ window.onload = async () => {
   QM = await QuickMark.init();
   QMUtil.allcheckAddListener();
 
+  // .checkListの中からcheckboxがtrueな物を削除する。
   document.getElementById("delete").addEventListener("click", async () => {
     const checkList = document.querySelectorAll(".checkList");
     const deleteList = [];
     for (const checkbox of checkList) {
-      if (checkbox.checked) {
-        deleteList.push(checkbox.value);
-      }
+      if (checkbox.checked) deleteList.push(checkbox.value);
     }
     await QM.deleteLink(deleteList);
     loadMain();
@@ -104,7 +103,3 @@ const loadMain = () => {
 
   QMUtil.changeButtonColor(QM.keyName);
 };
-
-/**
- * .checkListの中からcheckboxがtrueな物を削除する。
- */

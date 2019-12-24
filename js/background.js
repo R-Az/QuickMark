@@ -16,10 +16,10 @@ let QM;
 /*インストール時にchrome.storageにQuickMark用のデータがなければ作成する*/
 chrome.runtime.onInstalled.addListener(() => QMStorage.makeQuickMarkData());
 
+/** 画面読み込み時にQMへQuickMarkクラスを代入する */
 window.onload = async () => QM = await QuickMark.init();
 
-// Ctrl＋BでQuickMarkへ追加
-// Ctrl＋QでQuickMarkを開く
+/** Ctrl＋BでQuickMarkへ追加 Ctrl＋QでQuickMarkを開く */
 chrome.commands.onCommand.addListener(command => {
   switch (command) {
     case "quickmark":
@@ -34,6 +34,7 @@ chrome.commands.onCommand.addListener(command => {
   }
 });
 
+/** フォルダ画面を呼び出したり、ブックマークの保存領域を変更したりする */
 chrome.runtime.onMessage.addListener((message, sender, callback) => {
   switch (message.msg) {
     case "openDirectorySetting":
@@ -45,14 +46,10 @@ chrome.runtime.onMessage.addListener((message, sender, callback) => {
   }
 });
 
-// ステータスバーのアイコンをクリックするとQuickMarkの保存済リンクページが開く
+/** ステータスバーのアイコンをクリックするとQuickMarkの保存済リンクページが開く */
 chrome.browserAction.onClicked.addListener(() => openQuickMarkPage());
 
-//現在開いているタブのページタイトルとURLを取得してstorageへ保存
-/**
- *
- *
- */
+/** 現在開いているタブのページタイトルとURLを取得してstorageへ保存 */
 const addQuickMark = async () => {
   chrome.tabs.query({ active: true, currentWindow: true }, async tabs => {
     const currentTab = tabs[0];
@@ -65,14 +62,14 @@ const addQuickMark = async () => {
   });
 };
 
-//BrowserActionのアイコンをチェック済みに変える
+/** BrowserActionのアイコンをチェック済みに変える */
 const changeIcon = currentTabId =>
   chrome.browserAction.setIcon({
     path: { "48": "icon/changedicon48px.png" },
     tabId: currentTabId
   });
 
-// QuickMarkの保存済リンクページをポップアップで表示
+/** QuickMarkの保存済リンクページをポップアップで表示 */
 const openQuickMarkPage = () => {
   chrome.windows.create({
     url: "html/mainPage.html",
@@ -81,8 +78,7 @@ const openQuickMarkPage = () => {
     type: "popup"
   });
 };
-
-// QuickMarkのディレクトリ管理画面を表示
+/** QuickMarkのディレクトリ管理画面を表示 */
 const openFolderPage = () => {
   chrome.windows.create({
     url: "html/folder.html",

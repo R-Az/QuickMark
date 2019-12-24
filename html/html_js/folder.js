@@ -27,7 +27,7 @@ window.onload = async () => {
     const checkList = document.querySelectorAll(".checkList");
     const deleteList = [];
     for (const checkbox of checkList) {
-      if (checkbox.checked) { deleteList.push(checkbox.value); }
+      if (checkbox.checked) deleteList.push(checkbox.value);
     }
     await QM.deleteFolder(deleteList);
     toggleHiddenConfig();
