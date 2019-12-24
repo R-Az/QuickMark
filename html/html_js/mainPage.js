@@ -20,8 +20,18 @@ let QM;
 window.onload = async () => {
   QM = await QuickMark.init();
   QMUtil.allcheckAddListener();
-  await deleteObject();
-  loadMain();
+
+  document.getElementById("delete").addEventListener("click", async () => {
+    const checkList = document.querySelectorAll(".checkList");
+    const deleteList = [];
+    for (const checkbox of checkList) {
+      if (checkbox.checked) {
+        deleteList.push(checkbox.value);
+      }
+    }
+    await QM.deleteLink(deleteList);
+    loadMain();
+  });
   loadPage();
 };
 
@@ -98,15 +108,3 @@ const loadMain = () => {
 /**
  * .checkListの中からcheckboxがtrueな物を削除する。
  */
-const deleteObject = async () => {
-  document.getElementById("delete").addEventListener("click", async () => {
-    const checkList = document.querySelectorAll(".checkList");
-    const deleteList = [];
-    for (const checkbox of checkList) {
-      if (checkbox.checked) {
-        deleteList.push(checkbox.value);
-      }
-    }
-    await QM.deleteLink(deleteList);
-  });
-};
