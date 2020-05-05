@@ -1,0 +1,23 @@
+{
+  "name": "quickmark",
+  "version": "1.0.0",
+  "description": "GoogleChromeの拡張機能、QuickMarkです。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R-Az/QuickMark.git"
+  },
+  "author": "ryoga azuma",
+  "license": " http://www.opensource.org/licenses/mit-license.html MIT License",
+  "bugs": {
+    "url": "https://github.com/R-Az/QuickMark/issues"
+  },
+  "homepage": "https://github.com/R-Az/QuickMark#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.2"
+  }
+}
