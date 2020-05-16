@@ -13,9 +13,6 @@
 
 let QM;
 
-/*インストール時にchrome.storageにQuickMark用のデータがなければ作成する*/
-chrome.runtime.onInstalled.addListener(() => QMStorage.makeQuickMarkData());
-
 /** 画面読み込み時にQMへQuickMarkクラスを代入する */
 window.onload = async () => QM = await QuickMark.init();
 

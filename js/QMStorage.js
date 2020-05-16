@@ -33,19 +33,20 @@ class QMStorage {
 
   static async init() {
     const qmStorage = new QMStorage();
-    await new Promise((resolve, reject) => {
-      chrome.storage.sync.get(QMStorage.QUICK_MARK_CONFIG, result => {
+    qmStorage.storage = chrome.storage.sync;
+    await new Promise(async (resolve, reject) => {
+      chrome.storage.sync.get(QMStorage.QUICK_MARK_CONFIG, async result => {
         if (chrome.runtime.lastError) {
           alert(QMStorage.ALERT_MESSAGE + chrome.runtime.lastError);
           reject(chrome.runtime.lastError);
+        } else if (result[QMStorage.QUICK_MARK_CONFIG] == undefined) {
+          await qmStorage.makeQuickMarkData();
         } else {
-          if (result[QMStorage.QUICK_MARK_CONFIG]["STORAGE"] == "SYNC") {
-            qmStorage.storage = chrome.storage.sync;
-          } else {
+          if (result[QMStorage.QUICK_MARK_CONFIG]["STORAGE"] == "LOCAL") {
             qmStorage.storage = chrome.storage.local;
           }
-          resolve(result);
         }
+        resolve('sucess');
       });
     });
     return qmStorage;
@@ -206,25 +207,18 @@ class QMStorage {
    * @static
    * @memberof QMStorage
    */
-  static async makeQuickMarkData() {
-    chrome.storage.sync.get([QMStorage.QUICK_MARK_MAIN], result => {
-      if (!(QMStorage.QUICK_MARK_MAIN in result)) {
+  async makeQuickMarkData() {
 
-        const initQuickMarkData = {
-          [QMStorage.QUICK_MARK_MAIN]: { default: {} },
-          [QMStorage.QUICK_MARK_CONFIG]: {
-            [QMStorage.SELECTED_KEY]: "default",
-            STORAGE: "SYNC"
-          }
-        };
+    const initQuickMarkMainObj = {
+      "default": {}
+    };
+    const initQuickMarkConfigObj = {
+      [QMStorage.SELECTED_KEY]: "default",
+      STORAGE: "SYNC"
+    }
 
-        chrome.storage.sync.set(initQuickMarkData, () => {
-          if (chrome.runtime.lastError) {
-            alert(chrome.runtime.lastError.message);
-          }
-        });
-      }
-    });
+    await this.saveMain(initQuickMarkMainObj);
+    await this.saveConfig(initQuickMarkConfigObj);
   }
 
 }
