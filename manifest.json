@@ -6,7 +6,7 @@
   "background": {
     "scripts": [
       "js/QMStorage.js",
-      "js/quickMark.js",
+      "js/QuickMark.js",
       "js/background.js"
     ],
     "persistent": false

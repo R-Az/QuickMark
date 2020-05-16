@@ -1,55 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <script type="text/javascript" src="../js/QMStorage.js" defer></script>
-    <script type="text/javascript" src="../js/quickMark.js" defer></script>
-    <script type="text/javascript" src="../js/QMUtil.js" defer></script>
-    <script
-      type="text/javascript"
-      src="html_js/folder.js"
-      defer="defer"
-    ></script>
-    <link rel="stylesheet" type="text/css" href="css/folder.css" />
-    <title>QuickMark</title>
-  </head>
 
-  <body>
-    <div id="wrap">
-      <header>
-        Folder
-        <div id="headerButton">
-          <button type="button" id="create" class=" setting hidden">
-            <img src="html_icon/createNewFolder.svg" />
-          </button>
-          <button type="button" id="delete" class="setting hidden">
-            <img src="html_icon/delete.svg" />
-          </button>
-          <button type="button" id="config">
-            <img
-              src="html_icon/settings_applications.svg"
-              class="setting"
-            /><img src="html_icon/close.svg" class="setting hidden" />
-          </button>
+<head>
+  <meta charset="UTF-8" />
+  <script type="text/javascript" src="../js/QMStorage.js" defer></script>
+  <script type="text/javascript" src="../js/QuickMark.js" defer></script>
+  <script type="text/javascript" src="../js/QMUtil.js" defer></script>
+  <script type="text/javascript" src="html_js/folder.js" defer="defer"></script>
+  <link rel="stylesheet" type="text/css" href="css/folder.css" />
+  <title>QuickMark</title>
+</head>
+
+<body>
+  <div id="wrap">
+    <header>
+      Folder
+      <div id="headerButton">
+        <button type="button" id="create" class=" setting hidden">
+          <img src="html_icon/createNewFolder.svg" />
+        </button>
+        <button type="button" id="delete" class="setting hidden">
+          <img src="html_icon/delete.svg" />
+        </button>
+        <button type="button" id="config">
+          <img src="html_icon/settings_applications.svg" class="setting" /><img src="html_icon/close.svg"
+            class="setting hidden" />
+        </button>
+      </div>
+    </header>
+    <div id="content">
+      <div id="folder_create" class="hidden">
+        <input type="text" id="folder_name" placeholder="フォルダ名（10文字以内）" maxlength="10" />
+        <button type="button" id="folder_make">作成</button>
+      </div>
+      <div class="main">
+        <div class="hidden setting">
+          <input type="checkbox" id="allcheck" /> 全選択
         </div>
-      </header>
-      <div id="content">
-        <div id="folder_create" class="hidden">
-          <input
-            type="text"
-            id="folder_name"
-            placeholder="フォルダ名（10文字以内）"
-            maxlength="10"
-          />
-          <button type="button" id="folder_make">作成</button>
-        </div>
-        <div class="main">
-          <div class="hidden setting">
-            <input type="checkbox" id="allcheck" /> 全選択
-          </div>
-          <dev id="mainlist"> </dev>
-        </div>
+        <dev id="mainlist"> </dev>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
