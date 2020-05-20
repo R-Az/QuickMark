@@ -10,7 +10,7 @@
 <body>
   <div id="wrap">
     <header>
-      <h1>Config</h1>
+      Config
       <div id="headerButton">
         <button type="button" id="create" class=" setting hidden">
           <img src="html_icon/createNewFolder.svg" />
@@ -19,22 +19,23 @@
           <img src="html_icon/delete.svg" />
         </button>
         <button type="button" id="config">
-          <img src="html_icon/settings_applications.svg" class="setting" /><img src="html_icon/close.svg"
-            class="setting hidden" />
-        </button>
+          <img src="html_icon/settings_applications.svg" class="setting" />
+          <img src="html_icon/close.svg" class="setting hidden" />
       </div>
     </header>
     <div id="content">
-      <div id="folder_create" class="hidden">
-        <input type="text" id="folder_name" placeholder="フォルダ名（10文字以内）" maxlength="10" />
-        <button type="button" id="folder_make">作成</button>
-      </div>
-      <div class="main">
-        <div class="hidden setting">
-          <input type="checkbox" id="allcheck" /> 全選択
-        </div>
-        <dev id="mainlist"> </dev>
-      </div>
+      <p>ブックマークの保存先<br>
+        <select id="sync">
+          <option value="sync">アカウントに保存</option>
+          <option value="local">この端末に保存</option>
+        </select>
+      </p>
+      <p>URLコピペ時のフォーマット<br>
+        <input type="text" id="URL_format" />
+        <br>
+        凡例<br>\n = 改行<br>&PAGENAME = ページ名<br>&URL = URL
+      </p>
+      <p><button type="button" id="OK">決定</button></p>
     </div>
   </div>
   <script type="text/javascript" src="../js/QMStorage.js" defer></script>
